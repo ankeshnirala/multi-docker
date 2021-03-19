@@ -5,7 +5,7 @@ before_install:
   - docker build -t ankesh/docker-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run ankesh.docker-test npm test -- --coverage
+  - docker run ankesh/docker-test npm test -- --coverage
 
 after_success:
   - docker build -t ankesh/multi-client ./client
