@@ -1,0 +1,21 @@
+sudo: required
+services: -docker
+
+before_install:
+  - docker build -t ankesh/docker-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run ankesh.docker-test npm test -- --coverage
+
+after_success:
+  - docker build -t ankesh/multi-client ./client
+  - docker build -t ankesh/multi-nginx ./nginx
+  - docker build -t ankesh/multi-server ./server
+  - docker build -t ankesh/multi-worker ./worker
+  # LOGIN TO THE DOCKER CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #TAKE THOSE IMAGES AND PUSH THEM TO DOCKER HUVB
+  - docker push ankesh/multi-client
+  - docker push ankesh/multi-nginx
+  - docker push ankesh/multi-server
+  - docker push ankesh/multi-worker
