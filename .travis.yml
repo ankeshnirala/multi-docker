@@ -10,14 +10,14 @@ script:
   # - docker run ankesh/docker-test npm test -- --coverage
 
 after_success:
-  - docker build -t ankesh/multi-client ./client
-  - docker build -t ankesh/multi-nginx ./nginx
-  - docker build -t ankesh/multi-server ./server
-  - docker build -t ankesh/multi-worker ./worker
+  - docker build -t ankeshnirala/multi-client ./client
+  - docker build -t ankeshnirala/multi-nginx ./nginx
+  - docker build -t ankeshnirala/multi-server ./server
+  - docker build -t ankeshnirala/multi-worker ./worker
   # LOGIN TO THE DOCKER CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #TAKE THOSE IMAGES AND PUSH THEM TO DOCKER HUVB
-  - docker push ankesh/multi-client
-  - docker push ankesh/multi-nginx
-  - docker push ankesh/multi-server
-  - docker push ankesh/multi-worker
+  - docker push ankeshnirala/multi-client
+  - docker push ankeshnirala/multi-nginx
+  - docker push ankeshnirala/multi-server
+  - docker push ankeshnirala/multi-worker
