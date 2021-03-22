@@ -12,13 +12,22 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            padding: "15px",
+            margin: "15px",
+          }}
+        >
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
-          <div>
-            <Route exact path="/" component={Fib} />
-            <Route exact path="/otherpage" component={OtherPage} />
-          </div>
-        </header>
+        </div>
+        <div>
+          <Route exact path="/" component={Fib} />
+          <Route exact path="/otherpage" component={OtherPage} />
+        </div>
       </div>
     </Router>
   );
